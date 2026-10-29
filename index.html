@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>مرشدك الصحي</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+<header><div class="logo">✚</div><div><h1>مرشدك الصحي</h1><div class="muted">إرشادات أولية عامة، مو بديل عن الطبيب</div></div></header>
+<nav id="nav" class="nav hidden"><button id="n-chat" class="on">💬 دليل الأعراض</button><button id="n-tools">🧰 أدوات وإرشادات</button></nav>
+
+<!-- 1: welcome -->
+<section id="s-welcome" class="card">
+  <h2>أهلاً فيك 👋</h2>
+  <p>اكتب شكواك الصحية وبعطيك نصائح عامة، ومتى لازم تشوف دكتور، وشو العلامات اللي ما بتحتمل التأجيل.</p>
+  <div class="note"><b>تنبيه مهم:</b> هالموقع للتوعية فقط. ما بيشخّص الأمراض ولا بيعطي جرعات أدوية، وما بيغني عن الطبيب. وإذا كانت حالتك طارئة، اتصل بالإسعاف فوراً.</div>
+  <p class="muted">🔒 ملفك الصحي بيتخزن بمتصفحك أنت فقط. وكل شي بيصير على جهازك، وما في أي معلومات بتنرسل لأي مكان.</p>
+  <button class="btn" id="go-profile">فهمت، يلا نبلش</button>
+</section>
+
+<!-- 2: profile -->
+<section id="s-profile" class="card hidden">
+  <h2>ملفك الصحي</h2>
+  <div class="muted">عشان النصيحة تكون مناسبة إلك. كلها اختيارية ما عدا العمر.</div>
+  <div class="row">
+    <div><label class="f" for="age">العمر</label><input type="number" id="age" min="0" max="120" inputmode="numeric"></div>
+    <div><label class="f" for="sex">الجنس</label><select id="sex"><option value="">اختر</option><option>ذكر</option><option>أنثى</option></select></div>
+  </div>
+  <div id="preg-wrap" class="hidden"><label class="f">حمل أو رضاعة؟</label>
+    <div class="chips" data-name="preg"><label><input type="radio" name="preg" value="لا">لا</label><label><input type="radio" name="preg" value="حامل">حامل</label><label><input type="radio" name="preg" value="مرضعة">مرضعة</label></div></div>
+  <label class="f">أمراض مزمنة</label>
+  <div class="chips" id="chronic">
+    <label><input type="checkbox" value="سكري">سكري</label><label><input type="checkbox" value="ضغط">ضغط</label><label><input type="checkbox" value="قلب">قلب</label><label><input type="checkbox" value="ربو">ربو</label><label><input type="checkbox" value="كلى">كلى</label><label><input type="checkbox" value="كبد">كبد</label><label><input type="checkbox" value="غدة درقية">غدة درقية</label><label><input type="checkbox" value="مناعة ضعيفة">مناعة ضعيفة</label>
+  </div>
+  <label class="f" for="meds">أدوية بتاخدها حالياً</label><input type="text" id="meds" placeholder="مثال: ميتفورمين، أملوديبين">
+  <label class="f" for="allergy">حساسية (خصوصاً أدوية)</label><input type="text" id="allergy" placeholder="مثال: بنسلين">
+  <button class="btn" id="save" style="margin-top:18px" disabled>حفظ ومتابعة</button>
+  <button class="ghost" id="guest">متابعة كضيف بدون ملف</button>
+</section>
+
+<!-- 3: chat -->
+<section id="s-chat" class="hidden">
+  <div class="card chip-sum"><span id="sum"></span><button id="edit">تعديل</button></div>
+  <div id="log"></div>
+  <div class="card">
+    <label class="f" for="q" style="margin-top:0" id="qlabel">شو الشكوى؟</label>
+    <div class="quick" id="quick"></div>
+    <textarea id="q" placeholder="مثال: عندي صداع من يومين ومعه غثيان"></textarea>
+    <div class="acts"><button class="mic hidden" id="mic" title="إدخال صوتي" aria-label="إدخال صوتي">🎤</button><button class="btn" id="send">📋 إرشاد فوري</button></div>
+    <button class="btn hidden" id="ai" style="margin-top:8px;background:var(--chip);color:var(--ink)">🤖 اسأل الذكاء الاصطناعي</button>
+    <div class="muted hidden" id="ainote" style="margin-top:6px">الذكاء الاصطناعي بيرسل شكواك وملفك الصحي لخدمة Google Gemini ليرد عليك. بالخطة المجانية ممكن Google تستخدم المدخلات لتحسين منتجاتها، فلا تكتب اسمك أو أي معلومات تعريفية.</div>
+    <button class="ghost hidden" id="dl">📄 حمّل ملخص لأعطيه للدكتور</button>
+    <button class="ghost" id="reset">شكوى جديدة</button>
+    <div class="muted" style="margin-top:10px">للتوعية فقط، مو بديل عن الطبيب.</div>
+  </div>
+</section>
+<section id="s-tools" class="hidden"><div class="tabs" id="tabs"></div><div id="tp"></div></section>
+</main>
+
+<script src="config.js"></script>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
